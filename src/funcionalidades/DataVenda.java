@@ -1,4 +1,4 @@
-package gerenciador;
+package funcionalidades;
 
 public class DataVenda {
     private int dia;

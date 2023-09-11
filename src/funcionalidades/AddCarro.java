@@ -1,7 +1,6 @@
 package funcionalidades;
 
 import gerenciador.Carro;
-import gerenciador.DataVenda;
 
 import java.util.Scanner;
 
