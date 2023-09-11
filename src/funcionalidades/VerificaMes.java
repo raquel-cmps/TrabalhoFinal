@@ -1,7 +1,7 @@
 package funcionalidades;
 
 public class VerificaMes {
-     public dataMes(int mes, int[] carrosVendidos){
+     public void dataMes(int mes, int[] carrosVendidos){
 
          switch (mes){
              case 1:
