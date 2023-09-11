@@ -1,12 +1,13 @@
 package gerenciador;
 
-import funcionalidades.AddCarro;
 import funcionalidades.DataVenda;
-
+import funcionalidades.VerificaMes;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 import static funcionalidades.AddCarro.novoCarro;
+
 
 public class Execultora {
     public static void menu(){
@@ -19,14 +20,20 @@ public class Execultora {
     }
 
     public static void main(String[] args) {
+        int raquel = 0;
         ArrayList<Carro> lista = new ArrayList<Carro>();
+        int[] carrosVendidos = new int[12];
+        for(int i = 0; i < 12; i++){
+            carrosVendidos[i] = 0;
+        }
         Scanner scanner = new Scanner(System.in);
         DataVenda dataVenda = new DataVenda();
         Carro carro = new Carro();
+        //VerificaMes verificaMes = new VerificaMes();
         menu();
         int op;
         int quant = 0;
-        int vendidos = 0;
+
         do{
             op = scanner.nextInt();
             if(op == 1){
@@ -38,6 +45,7 @@ public class Execultora {
                     System.out.println();
                 }
                 menu();
+
             }
             else if(op == 2){
                 for(int i = 0; i < quant; i++){
@@ -48,29 +56,29 @@ public class Execultora {
                     System.out.println();
                 }
                 menu();
+
             }
 
             else if(op == 3) {
                 int excluir = 0;
                 System.out.println("Escolha o indice do carro que deseja vender");
                 excluir = scanner.nextInt();
-                for (int i = 0; i < quant; i++) {
-                    if (quant == excluir) {
-                        lista.remove(i);
-                        vendidos += 1;
-                    }
-                }
 
                 System.out.println("Informe a data de venda: ");
-                System.out.print("DIA: ");
+                System.out.print("DIA: (dd)");
                 dataVenda.setDia(scanner.nextInt());
-                System.out.print("MES: ");
+                System.out.print("MES: (mm)");
                 dataVenda.setMes(scanner.nextInt());
-                System.out.print("ANO: ");
+                raquel = dataVenda.getMes();
+                
+                System.out.print("ANO: (yyyy)");
                 dataVenda.setAno(scanner.nextInt());
 
                 for (int i = 0; i < quant; i++) {
-                    lista.add(i, AddCarro.dataVenda());
+                    if (quant == excluir) {
+
+                        lista.remove(i);
+                    }
                 }
 
                 System.out.println();
@@ -79,8 +87,9 @@ public class Execultora {
                 menu();
             }
             else if(op == 4){
-                System.out.println("A quantidade de carros vendidas foi de: ");
-                System.out.println(vendidos);
+                for(int i = 0; i < 12; i++){
+                    System.out.println("FORAM VENDIDOS " + carrosVendidos[i] + " NO MES " + (i+1));
+                }
 
                 menu();
             }
