@@ -1,12 +1,15 @@
 package gerenciador;
 
 import funcionalidades.DataVenda;
-import funcionalidades.VerificaMes;
+import funcionalidades.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
 import static funcionalidades.AddCarro.novoCarro;
+import static funcionalidades.TesteMes.qualMes;
 
 
 public class Execultora {
@@ -20,16 +23,11 @@ public class Execultora {
     }
 
     public static void main(String[] args) {
-        int raquel = 0;
         ArrayList<Carro> lista = new ArrayList<Carro>();
-        int[] carrosVendidos = new int[12];
-        for(int i = 0; i < 12; i++){
-            carrosVendidos[i] = 0;
-        }
+        Map<String, Integer> listaVendas = new HashMap<>();
+
         Scanner scanner = new Scanner(System.in);
         DataVenda dataVenda = new DataVenda();
-        Carro carro = new Carro();
-        //VerificaMes verificaMes = new VerificaMes();
         menu();
         int op;
         int quant = 0;
@@ -56,7 +54,6 @@ public class Execultora {
                     System.out.println();
                 }
                 menu();
-
             }
 
             else if(op == 3) {
@@ -69,14 +66,14 @@ public class Execultora {
                 dataVenda.setDia(scanner.nextInt());
                 System.out.print("MES: (mm)");
                 dataVenda.setMes(scanner.nextInt());
-                raquel = dataVenda.getMes();
-                
                 System.out.print("ANO: (yyyy)");
                 dataVenda.setAno(scanner.nextInt());
+                int mes = dataVenda.getMes();
 
-                for (int i = 0; i < quant; i++) {
-                    if (quant == excluir) {
+                listaVendas.merge(qualMes(mes), 1, Integer::sum);
 
+                for (int i = 0; i < lista.size(); i++) {
+                    if (i == excluir) {
                         lista.remove(i);
                     }
                 }
@@ -87,14 +84,10 @@ public class Execultora {
                 menu();
             }
             else if(op == 4){
-                for(int i = 0; i < 12; i++){
-                    System.out.println("FORAM VENDIDOS " + carrosVendidos[i] + " NO MES " + (i+1));
-                }
-
+                System.out.println("Foram vendidos: ");
+                System.out.println(listaVendas);
                 menu();
             }
         }while (op !=5);
-
     }
-
 }
