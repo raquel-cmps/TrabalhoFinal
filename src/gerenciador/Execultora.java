@@ -70,7 +70,7 @@ public class Execultora {
                 System.out.print("MES: (mm)");
                 dataVenda.setMes(scanner.nextInt());
                 raquel = dataVenda.getMes();
-                
+
                 System.out.print("ANO: (yyyy)");
                 dataVenda.setAno(scanner.nextInt());
 
